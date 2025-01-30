@@ -65,7 +65,7 @@ const SideBar = () => {
             text="Candidatos" 
           />
           <SideBarItem 
-            href="/admin/atas-de-preco" 
+            href="/admin/teste-atas" 
             prefetch={true}
             shallow={true}
             icon={

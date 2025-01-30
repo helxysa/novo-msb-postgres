@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { Vaga, Candidato } from '../types/types';
+import { Vaga, Candidato, Ata } from '../types/types';
 export const api = axios.create({
     baseURL: 'http://localhost:3333/',
     timeout: 5000,
@@ -8,6 +8,58 @@ export const api = axios.create({
     }
 });
 
+export async function getAtas(){
+    try {   
+        const response = await api.get('/atas')
+        return response.data
+    } catch (error) {
+        console.error('Erro ao buscar dados:', error)
+        throw error
+    }
+
+}
+
+export async function deleteAta(id: string) {
+    try {
+        await api.delete(`/atas/${id}`);
+    } catch (error) {
+        console.error('Erro ao deletar ata:', error)
+        throw error
+    }
+}
+
+export async function updateAta(id: string, ata: Ata) {
+    try {
+        const response = await api.put(`/atas/${id}`, ata);
+        return response.data;
+    } catch (error) {
+        console.error('Erro ao atualizar ata:', error)
+        throw error
+    }
+}
+
+export const createAta = async (formData: FormData) => {
+    try {
+        const response = await api.post('/atas', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+        return response.data
+    } catch (error) {
+        throw error
+    }
+}
+
+export async function getAtaById(id: string) {
+    try {
+        const response = await api.get(`/atas/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error('Erro ao buscar ata:', error)
+        throw error
+    }
+}
 
 export async function getVagas(){
     try {   
