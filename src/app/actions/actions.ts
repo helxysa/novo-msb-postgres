@@ -51,6 +51,15 @@ export const createAta = async (formData: FormData) => {
     }
 }
 
+export async function getTodasCandidaturas(){
+    try {
+        const response = await api.get('/candidaturas')
+        return response.data
+    } catch (error) {
+        throw error
+    }
+}
+
 export async function getAtaById(id: string) {
     try {
         const response = await api.get(`/atas/${id}`);
